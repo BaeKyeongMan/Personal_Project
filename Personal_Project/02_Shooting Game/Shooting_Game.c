@@ -4,6 +4,7 @@
 #include <string.h>
 #include <time.h>
 #include <Windows.h>
+#include <stdlib.h>
 
 typedef struct {
 	int x, y;
@@ -15,7 +16,16 @@ typedef struct {
 	char MonsterJ;
 	char MonsterL;
 	char player;
+	char wall;
 }Object;
+
+typedef struct {
+	Pos MonsterU;
+	Pos MonsterI;
+	Pos MonsterJ;
+	Pos MonsterL;
+	Pos player;
+}ObjectPos;
 
 // 커서 숨기기 or 두께조절
 void RemoveCursor()
@@ -100,14 +110,74 @@ void GameRule(int x, int y)
 	ClearScreen();
 }
 
+void RemainTime()
+{
+	clock_t startTime = clock();
+	int limitTime = 30;
 
+	while (1)
+	{
+		clock_t currentTime = clock();
+		int seconds = (int)(currentTime - startTime) / CLOCKS_PER_SEC;
+		int remainingTime = limitTime - seconds;
+
+		if (remainingTime <= 0)
+		{
+			system("cls");
+			gotoxy(40, 20);
+			printf("======================");
+			gotoxy(40, 21);
+			printf("      GAME OVER!");
+			gotoxy(40, 22);
+			printf("======================");
+			break;
+		}
+
+		gotoxy(10, 22);
+		printf("남은 시간 : %d초", remainingTime);
+	}
+}
+
+void Map(char stage[20][40], Object wall)
+{
+	for (int y = 0; y < 20; y++)
+	{
+		for (int x = 0; x < 40; x++)
+		{
+			if (x == 0 || y == 0 || x == 38 || y == 19)
+				stage[y][x] = wall.wall;
+			else
+				stage[y][x] = ' ';
+		}
+		stage[y][39] = '\0';
+	}
+
+	gotoxy(0, 0);
+	for (int y = 0; y < 20; y++)
+	{
+		printf("%s\n", stage[y]);
+	}
+
+	RemainTime();
+}
+
+void MonsterPositions(ObjectPos* obj)
+{
+	srand(time(NULL));
+	obj->MonsterI.x = rand() % 50;
+	obj->MonsterI.y = rand() % 50;
+	
+}
 
 int main()
 {
-	Object object = { '!', '@', '#', '$', '+' };
+	ObjectPos objectpos;
+	Object object = { '!', '@', '#', '$', '+' , '*'};
+	char STAGE[20][40];
 	RemoveCursor();
 	GameRule(48, 2);
-
+	MonsterPositions(&objectpos);
+	Map(STAGE, object);
 }
 
 // 게임적 기능
