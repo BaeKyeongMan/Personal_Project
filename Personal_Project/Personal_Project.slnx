@@ -3,5 +3,6 @@
     <Platform Name="x64" />
     <Platform Name="x86" />
   </Configurations>
-  <Project Path="01_Avoid Game/01_Avoid Game.vcxproj" />
+  <Project Path="01_Avoid Game/01_Avoid Game.vcxproj" Id="ce73ee5b-0588-417a-ad50-cddf88923ba1" />
+  <Project Path="02_Shooting Game/02_Shooting Game.vcxproj" Id="b8cbe533-f484-487f-87aa-a059b550ad0e" />
 </Solution>
