@@ -57,7 +57,6 @@ int main()
 		NextStage(&stageinfo);
 	}
 
-
 	// 게임 종료시 무브 카운트 (Q를 눌러서 종료했을 때도 포함)
 	MoveCountPrint(input, object, &stageinfo);
 
