@@ -11,21 +11,21 @@ typedef struct {
 }Pos;
 
 typedef struct {
-	char MonsterU;
-	char MonsterI;
-	char MonsterJ;
-	char MonsterL;
-	char player;
-	char wall;
-}Object;
-
-typedef struct {
 	Pos MonsterU;
 	Pos MonsterI;
 	Pos MonsterJ;
-	Pos MonsterL;
+	Pos MonsterK;
 	Pos player;
 }ObjectPos;
+
+typedef struct {
+	char MonsterU;
+	char MonsterI;
+	char MonsterJ;
+	char MonsterK;
+	char player;
+	char wall;
+}Object;
 
 // 커서 숨기기 or 두께조절
 void RemoveCursor()
@@ -96,14 +96,18 @@ void GameRule(int x, int y)
 	Sleep(1000);
 
 	gotoxy(x - 8, y + 12);
-	printf("틀릴경우 목숨이 줄어듭니다!");
+	printf("도중에 그만두시려면 Q를 눌러주세요!");
 	Sleep(1000);
 
 	gotoxy(x - 8, y + 14);
-	printf("그럼 슈팅게임 시작하겠습니다!");
+	printf("틀릴경우 목숨이 줄어듭니다!");
 	Sleep(1000);
 
 	gotoxy(x - 8, y + 16);
+	printf("그럼 슈팅게임 시작하겠습니다!");
+	Sleep(1000);
+
+	gotoxy(x - 8, y + 18);
 	printf("아무키나 눌러주세요!");
 
 	_getch();
@@ -124,21 +128,21 @@ void RemainTime()
 		if (remainingTime <= 0)
 		{
 			system("cls");
-			gotoxy(40, 20);
+			gotoxy(40, 10);
 			printf("======================");
-			gotoxy(40, 21);
+			gotoxy(40, 11);
 			printf("      GAME OVER!");
-			gotoxy(40, 22);
+			gotoxy(40, 12);
 			printf("======================");
 			break;
 		}
 
 		gotoxy(10, 22);
-		printf("남은 시간 : %d초", remainingTime);
+		printf("남은 시간 : %2d초", remainingTime);
 	}
 }
 
-void Map(char stage[20][40], Object wall)
+void InitMap(char stage[20][40], Object wall)
 {
 	for (int y = 0; y < 20; y++)
 	{
@@ -152,32 +156,133 @@ void Map(char stage[20][40], Object wall)
 		stage[y][39] = '\0';
 	}
 
-	gotoxy(0, 0);
-	for (int y = 0; y < 20; y++)
-	{
-		printf("%s\n", stage[y]);
-	}
-
-	RemainTime();
 }
 
-void MonsterPositions(ObjectPos* obj)
+void SetObjectPositions(char stage[20][40], ObjectPos* obj, const Object* m)
 {
 	srand(time(NULL));
-	obj->MonsterI.x = rand() % 50;
-	obj->MonsterI.y = rand() % 50;
-	
+
+	obj->MonsterU.x = rand() % 36 + 1;
+	obj->MonsterU.y = rand() % 17 + 1;
+
+	obj->MonsterI.x = rand() % 36 + 1;
+	obj->MonsterI.y = rand() % 17 + 1;
+
+	obj->MonsterJ.x = rand() % 36 + 1;
+	obj->MonsterJ.y = rand() % 17 + 1;
+
+	obj->MonsterK.x = rand() % 36 + 1;
+	obj->MonsterK.y = rand() % 17 + 1;
+
+	obj->player.x = 20;
+	obj->player.y = 10;
+
+	stage[obj->MonsterU.y][obj->MonsterU.x] = m->MonsterU;
+	stage[obj->MonsterI.y][obj->MonsterI.x] = m->MonsterI;
+	stage[obj->MonsterJ.y][obj->MonsterJ.x] = m->MonsterJ;
+	stage[obj->MonsterK.y][obj->MonsterK.x] = m->MonsterK;
+	stage[obj->player.y][obj->player.x] = m->player;
+}
+
+void DrawMap(char stage[20][40], ObjectPos* obj, const Object* m)
+{
+	gotoxy(0, 0);
+
+	for (int y = 0; y < 20; y++)
+	{
+		for (int x = 0; x < 40; x++)
+		{
+
+			if (x == obj->player.x && y == obj->player.y)
+			{
+				printf("%c", m->player);
+			}
+
+			else if (x == obj->MonsterU.x && y == obj->MonsterU.y)
+			{
+				printf("%c", m->MonsterU);
+			}
+
+			else if (x == obj->MonsterI.x && y == obj->MonsterI.y)
+			{
+				printf("%c", m->MonsterI);
+			}
+
+			else if (x == obj->MonsterJ.x && y == obj->MonsterJ.y)
+			{
+				printf("%c", m->MonsterJ);
+			}
+
+			else if (x == obj->MonsterK.x && y == obj->MonsterK.y)
+			{
+				printf("%c", m->MonsterK);
+			}
+
+			else {
+				printf("%c", stage[y][x]);
+			}
+		}
+		printf("\n");
+	}
+
+}
+
+void PlayerMove(char stage[20][40], ObjectPos* p, const Object* obj, char input)
+{
+	int nextX = p->player.x;
+	int nextY = p->player.y;
+
+	if (input == 'w' || input == 'W') nextY--;
+
+	else if (input == 'a' || input == 'A') nextX--;
+
+	else if (input == 's' || input == 'S') nextY++;
+
+	else if (input == 'd' || input == 'D') nextX++;
+
+	if (stage[nextY][nextX] != obj->wall)
+	{
+		p->player.x = nextX;
+		p->player.y = nextY;
+	}
+
 }
 
 int main()
 {
 	ObjectPos objectpos;
-	Object object = { '!', '@', '#', '$', '+' , '*'};
+	Object object = { '!', '@', '#', '$', '+', '*' };
 	char STAGE[20][40];
+	char input = 0;
+
+	// 커서 숨김
 	RemoveCursor();
+
+	// 게임 룰 설명
 	GameRule(48, 2);
-	MonsterPositions(&objectpos);
-	Map(STAGE, object);
+
+	// 맵 초기화
+	InitMap(STAGE, object);
+
+	// 처음 한 번 만 오브젝트들 위치 잡아주기
+	SetObjectPositions(STAGE, &objectpos, &object);
+
+	while (1)
+	{
+
+		if (_kbhit())
+		{
+			input = _getch();
+
+			// 플레이어 움직임
+			PlayerMove(STAGE, &objectpos, &object, input);
+
+			// 맵 그리기
+			DrawMap(STAGE, &objectpos, &object);
+
+		}
+
+	}
 }
 
 // 게임적 기능

@@ -26,8 +26,22 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 8,
+          "SelectedChildIndex": 0,
           "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Shooting_Game.c",
+              "DocumentMoniker": "C:\\Users\\rudak\\OneDrive\\\uBC14\uD0D5 \uD654\uBA74\\\uACBD\uB9CC\\\uCF54\uB529\\Personal_Project\\Personal_Project\\02_Shooting Game\\Shooting_Game.c",
+              "RelativeDocumentMoniker": "02_Shooting Game\\Shooting_Game.c",
+              "ToolTip": "C:\\Users\\rudak\\OneDrive\\\uBC14\uD0D5 \uD654\uBA74\\\uACBD\uB9CC\\\uCF54\uB529\\Personal_Project\\Personal_Project\\02_Shooting Game\\Shooting_Game.c",
+              "RelativeToolTip": "02_Shooting Game\\Shooting_Game.c",
+              "ViewState": "AgIAAMgAAAAAAAAAAAAmwOIAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000423|",
+              "WhenOpened": "2026-02-10T06:02:55.274Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{a80febb4-e7e0-4147-b476-21aaf2453969}"
@@ -56,7 +70,7 @@
               "RelativeDocumentMoniker": "01_Avoid Game\\Avoid_Game_Func.c",
               "ToolTip": "C:\\Users\\rudak\\OneDrive\\\uBC14\uD0D5 \uD654\uBA74\\\uACBD\uB9CC\\\uCF54\uB529\\Personal_Project\\Personal_Project\\01_Avoid Game\\Avoid_Game_Func.c",
               "RelativeToolTip": "01_Avoid Game\\Avoid_Game_Func.c",
-              "ViewState": "AgIAADIAAAAAAAAAAAAAAGcAAAACAAAAAAAAAA==",
+              "ViewState": "AgIAAEAAAAAAAAAAAAAAAEYAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000423|",
               "WhenOpened": "2026-02-10T07:51:54.015Z"
             },
@@ -68,7 +82,7 @@
               "RelativeDocumentMoniker": "01_Avoid Game\\Avoid_Game.c",
               "ToolTip": "C:\\Users\\rudak\\OneDrive\\\uBC14\uD0D5 \uD654\uBA74\\\uACBD\uB9CC\\\uCF54\uB529\\Personal_Project\\Personal_Project\\01_Avoid Game\\Avoid_Game.c",
               "RelativeToolTip": "01_Avoid Game\\Avoid_Game.c",
-              "ViewState": "AgIAAAAAAAAAAAAAAADwvwsAAAAiAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAADkAAAACAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000423|",
               "WhenOpened": "2026-02-10T07:51:52.265Z"
             },
@@ -80,22 +94,9 @@
               "RelativeDocumentMoniker": "01_Avoid Game\\Avoid_Game.h",
               "ToolTip": "C:\\Users\\rudak\\OneDrive\\\uBC14\uD0D5 \uD654\uBA74\\\uACBD\uB9CC\\\uCF54\uB529\\Personal_Project\\Personal_Project\\01_Avoid Game\\Avoid_Game.h",
               "RelativeToolTip": "01_Avoid Game\\Avoid_Game.h",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAA8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
               "WhenOpened": "2026-02-10T06:59:22.475Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Shooting_Game.c",
-              "DocumentMoniker": "C:\\Users\\rudak\\OneDrive\\\uBC14\uD0D5 \uD654\uBA74\\\uACBD\uB9CC\\\uCF54\uB529\\Personal_Project\\Personal_Project\\02_Shooting Game\\Shooting_Game.c",
-              "RelativeDocumentMoniker": "02_Shooting Game\\Shooting_Game.c",
-              "ToolTip": "C:\\Users\\rudak\\OneDrive\\\uBC14\uD0D5 \uD654\uBA74\\\uACBD\uB9CC\\\uCF54\uB529\\Personal_Project\\Personal_Project\\02_Shooting Game\\Shooting_Game.c",
-              "RelativeToolTip": "02_Shooting Game\\Shooting_Game.c",
-              "ViewState": "AgIAAG8AAAAAAAAAAAAAAHcAAAAgAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000423|",
-              "WhenOpened": "2026-02-10T06:02:55.274Z",
-              "EditorCaption": ""
             }
           ]
         },
